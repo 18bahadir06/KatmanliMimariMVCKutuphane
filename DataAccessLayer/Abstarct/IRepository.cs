@@ -9,10 +9,10 @@ namespace DataAccessLayer.Abstarct
 {
     public interface IRepository<T>
     {
-        List<T> GetList();
+        List<T> List();
         void Insert(T item);
         void Delete(T item);
         void Update(T item);
-        List<T> List(Expression<Func<T,bool>> filter);
+        List<T> ListFiltr(Expression<Func<T,bool>> filter);
     }
 }

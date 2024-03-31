@@ -59,6 +59,11 @@
     <Compile Include="Abstarct\IyazarDal.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
+    <Compile Include="EntityFramework\EfislemDal.cs" />
+    <Compile Include="EntityFramework\EfkitapDal.cs" />
+    <Compile Include="EntityFramework\EfogrenciDal.cs" />
+    <Compile Include="EntityFramework\EfturDal.cs" />
+    <Compile Include="EntityFramework\EfyazarDal.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

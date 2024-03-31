@@ -1,32 +1,33 @@
-﻿using DataAccessLayer.Concrete.Repositories;
+﻿using BussinessLayer.Abstract;
+using DataAccessLayer.Abstarct;
+using DataAccessLayer.Concrete.Repositories;
 using EntityLayer;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BussinessLayer.Concrete
 {
-    public class turManager
+    public class turManager : IturService
     {
-        GenericRepository<tur> repo =new GenericRepository<tur>();
+        IturDal _turdal;
 
-        public List<tur> GetAll()
+        public turManager(IturDal turdal)
         {
-            return repo.GetList();
+            _turdal = turdal;
         }
-        public void turAddBL(tur item)
-        {
-            if(item.ad=="" || item.ad.Length<=3)
-            {
-                //hata mesajı
 
-            }
-            else
-            {
-                repo.Insert(item);
-            }
+        public List<tur> GetturList()
+        {
+            return _turdal.List(); 
+        }
+
+        public void turAdd(tur tur)
+        {
+            _turdal.Insert(tur);
         }
     }
 }

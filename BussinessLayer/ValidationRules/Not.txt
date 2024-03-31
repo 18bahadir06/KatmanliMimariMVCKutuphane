@@ -1,0 +1,11 @@
+﻿	
+
+
+
+
+
+
+
+	Fluent Validation (geçirlilik/doğrulama kuralları)
+
+	Bussiness katmanına EKLE = FluentValidation
