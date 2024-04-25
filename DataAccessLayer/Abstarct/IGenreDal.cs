@@ -1,4 +1,5 @@
 ﻿using EntityLayer;
+using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstarct
 {
-    public interface IturDal:IRepository<tur>
+    public interface IGenreDal:IRepository<Genre>
     {
 
     }

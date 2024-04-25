@@ -2,6 +2,7 @@
 using BussinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer;
+using EntityLayer.Concrete;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,14 @@ namespace kutuphane.Controllers
     public class TurController : Controller
     {
         // GET: Tur
-        turManager tm=new turManager(new EfturDal());
+        GenreManager tm=new GenreManager(new EfGenreDal());
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult GetTurList()
         {
-            var turvalues = tm.GetturList();
+            var turvalues = tm.GetGenreList();
             return View(turvalues);
         }
         public ActionResult turAdd()
@@ -29,13 +30,13 @@ namespace kutuphane.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult turAdd(tur a)
+        public ActionResult turAdd(Genre a)
         {
-            turValidator turValidator=new turValidator();
+            GenreValidator turValidator=new GenreValidator();
             ValidationResult results= turValidator.Validate(a);
             if (results.IsValid)
             {
-                tm.turAdd(a);
+                tm.GenreAdd(a);
                 return RedirectToAction("GetTurList");
             }
             else 

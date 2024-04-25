@@ -60,10 +60,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IturService.cs" />
-    <Compile Include="Concrete\turManager.cs" />
+    <Compile Include="Abstract\IGenreService.cs" />
+    <Compile Include="Concrete\GenreManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValidationRules\turValidator.cs" />
+    <Compile Include="ValidationRules\GenreValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
