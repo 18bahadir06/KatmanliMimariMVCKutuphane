@@ -1,7 +1,7 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    var list = ((IEnumerable<SelectListItem>)ViewBag.number).ToList();
 }
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <br />
@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Türler Listesi</h1>
+                    <h1>Yazarlar</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,19 +25,44 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
+
                         <div class="card-header">
-                            <h3 class="card-title">Tür listesi</h3>
+                            <h3 class="card-title">Yazar listesi</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <a href="/AdminTur/AddTur" class="btn btn-info" style="float:right;">+ Yeni tür ekle</a>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+                                Yeni Yazar Girişi
+                            </button>
+                            <div class="modal" id="Modal1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2 class="modal-title">
+                                                Yazar adı
+                                            </h2>
+                                        </div>
+                                        <form method="post" action="/AdminAuthor/AddAuthor">
+                                            <div class="modal-body">
+                                                <label>Yazar Adı</label>
+                                                <input type="text" name="Name" class="form-control" />
+                                                <br />
+                                                <label>Yazar Soyadı</label>
+                                                <input type="text" name="Surname" class="form-control" />
+                                                <br />
+                                                <button class="btn btn-info">Kaydet</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/AdminAuthor/AddAuthor" class="btn btn-info" style="float:right;">+ Yeni Yazar ekle</a>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Tür Ad</th>
-                                        <th>Kitap sayisi</th>
-                                        <th>Açıkılama</th>
+                                        <th>Yazar Adı Soyadı</th>
+                                        <th>Foto</th>
                                         <th>Güncelle</th>
                                         <th>Sil</th>
                                     </tr>
@@ -45,23 +70,19 @@
                                 <tbody>
                                     @foreach (var i in Model)
                                     {
-                                        
-                                        var item = list.FirstOrDefault(x => x.Value == i.GenreId.ToString());
-                                        
                                         <tr>
-                                            <th>@i.GenreId</th>
-                                            <td><a href="/AdminTur/GenreBook/@i.GenreId">@i.Name</a></td>
-                                            <td>@item.Text</td>
-                                            <td><p>@i.Info</p></td>
-                                            <td><a href="/AdminTur/Updatetur/@i.GenreId" class="btn btn-warning">Güncelle</a></td>
-                                            <td><a href="/AdminTur/Deletetur/@i.GenreId" class="btn btn-danger">Sil</a></td>
+                                            <th>@i.AuthorId</th>
+                                            <td><a href="/AdminBook/AuthorBook/@i.AuthorId">@i.Name @i.Surname</a></td>
+                                            <td><p>@i.Photo</p></td>
+                                            <td><a href="/AdminAuthor/UpdateAuthor/@i.AuthorId" class="btn btn-warning">Güncelle</a></td>
+                                            <td><a href="/AdminAuthor/DeleteAuthor/@i.AuthorId" class="btn btn-danger">Sil</a></td>
                                         </tr>
 
                                     }
                                 </tbody>
                             </table>
                         </div>
-                        
+
                         <!-- /.card-body -->
                         <div class="card-footer clearfix">
                             <ul class="pagination pagination-sm m-0 float-right">
@@ -78,3 +99,4 @@
         </div>
     </section>
 </div>
+

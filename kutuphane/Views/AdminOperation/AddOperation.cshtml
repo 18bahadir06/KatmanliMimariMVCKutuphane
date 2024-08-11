@@ -1,0 +1,85 @@
+﻿@model EntityLayer.Concrete.Operation
+@{
+    ViewBag.Title = "AddOperation";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+@{ 
+    var Bookvalue = ViewBag.Book;
+    var Studentvalue = ViewBag.Student;
+}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Kitap Ekle</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/AdminOperation/Index">Home</a></li>
+                        <li class="breadcrumb-item active">İşlem başlat</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Kütüphane Otomasyonu İşlem başlatma sayafası</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form action="/AdminOperation/AddOperation" method="post">
+                            <div class="card-body">
+                                <div class="card-footer">
+                                    <label for="bookSelect">Kitap seç</label>
+                                    <select id="bookSelect" name="BookId" class="form-control">
+                                        @if (ViewBag.Book != null)
+                                        {
+                                            foreach (var a in ViewBag.Book as List<SelectListItem>)
+                                            {
+                                                <option value="@a.Value">@a.Text</option>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <option value="">No books available</option>
+                                        }
+                                    </select>
+
+                                    <label for="studentSelect">Öğrenci seç</label>
+                                    <select id="studentSelect" name="StudentId" class="form-control">
+                                        @if (ViewBag.Student != null)
+                                        {
+                                            foreach (var a in ViewBag.Student as List<SelectListItem>)
+                                            {
+                                                <option value="@a.Value">@a.Text</option>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <option value="">No students available</option>
+                                        }
+                                    </select>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Kitabı teslim et</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+

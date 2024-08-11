@@ -1,8 +1,10 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    var list = ((IEnumerable<SelectListItem>)ViewBag.number).ToList();
 }
+
+
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <br />
 <div class="content-wrapper">
@@ -10,7 +12,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Türler Listesi</h1>
+                    <h1>Kitaplar</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -26,18 +28,19 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Tür listesi</h3>
+                            <h3 class="card-title">Kitaplar listesi</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <a href="/AdminTur/AddTur" class="btn btn-info" style="float:right;">+ Yeni tür ekle</a>
+                            <a href="/AdminBook/AddBook" class="btn btn-info" style="float:right;">+ Yeni Kitap ekle</a>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Tür Ad</th>
-                                        <th>Kitap sayisi</th>
-                                        <th>Açıkılama</th>
+                                        <th>Kitap adı</th>
+                                        <th>Yazar</th>
+                                        <th>sayfa sayısı</th>
+                                        <th>Tür</th>
                                         <th>Güncelle</th>
                                         <th>Sil</th>
                                     </tr>
@@ -45,23 +48,21 @@
                                 <tbody>
                                     @foreach (var i in Model)
                                     {
-                                        
-                                        var item = list.FirstOrDefault(x => x.Value == i.GenreId.ToString());
-                                        
                                         <tr>
-                                            <th>@i.GenreId</th>
-                                            <td><a href="/AdminTur/GenreBook/@i.GenreId">@i.Name</a></td>
-                                            <td>@item.Text</td>
-                                            <td><p>@i.Info</p></td>
-                                            <td><a href="/AdminTur/Updatetur/@i.GenreId" class="btn btn-warning">Güncelle</a></td>
-                                            <td><a href="/AdminTur/Deletetur/@i.GenreId" class="btn btn-danger">Sil</a></td>
+                                            <th>@i.BookId</th>
+                                            <td>@i.Name</td>
+                                            <td><a href="/AdminBook/AuthorBook/@i.Author.AuthorId"> @i.Author.Name @i.Author.Surname</a></td>
+                                            <td>@i.Pages</td>
+                                            <td><a href="/AdminTur/GenreBook/@i.Genres.GenreId">@i.Genres.Name </a></td>
+                                            <td><a href="/AdminBook/UpdateBook/@i.BookId" class="btn btn-warning">Güncelle</a></td>
+                                            <td><a href="/AdminBook/DeleteBook/@i.BookId" class="btn btn-danger">Sil</a></td>
                                         </tr>
 
                                     }
                                 </tbody>
                             </table>
                         </div>
-                        
+
                         <!-- /.card-body -->
                         <div class="card-footer clearfix">
                             <ul class="pagination pagination-sm m-0 float-right">
@@ -78,3 +79,5 @@
         </div>
     </section>
 </div>
+
+

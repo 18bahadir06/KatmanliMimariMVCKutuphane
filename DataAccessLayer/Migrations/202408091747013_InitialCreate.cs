@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class mig1 : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -52,29 +52,20 @@
                     {
                         OperationId = c.Int(nullable: false, identity: true),
                         BorrowDate = c.DateTime(nullable: false),
-                        ReturnDate = c.DateTime(nullable: false),
+                        ReturnDate1 = c.DateTime(nullable: false),
+                        ReturnDate2 = c.DateTime(nullable: false),
                         BookId = c.Int(nullable: false),
                         StudentId = c.Int(nullable: false),
-                        RecipientId = c.Int(nullable: false),
-                        ReturnerId = c.Int(nullable: false),
-                        Staff_StaffId = c.Int(),
-                        Staff_StaffId1 = c.Int(),
-                        Recipient_StaffId = c.Int(),
-                        Returner_StaffId = c.Int(),
+                        StaffId = c.Int(nullable: false),
+                        DeliveryStatus = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.OperationId)
                 .ForeignKey("dbo.Books", t => t.BookId, cascadeDelete: true)
-                .ForeignKey("dbo.Staffs", t => t.Staff_StaffId)
-                .ForeignKey("dbo.Staffs", t => t.Staff_StaffId1)
-                .ForeignKey("dbo.Staffs", t => t.Recipient_StaffId)
-                .ForeignKey("dbo.Staffs", t => t.Returner_StaffId)
+                .ForeignKey("dbo.Staffs", t => t.StaffId, cascadeDelete: true)
                 .ForeignKey("dbo.Students", t => t.StudentId, cascadeDelete: true)
                 .Index(t => t.BookId)
                 .Index(t => t.StudentId)
-                .Index(t => t.Staff_StaffId)
-                .Index(t => t.Staff_StaffId1)
-                .Index(t => t.Recipient_StaffId)
-                .Index(t => t.Returner_StaffId);
+                .Index(t => t.StaffId);
             
             CreateTable(
                 "dbo.Staffs",
@@ -107,17 +98,11 @@
         public override void Down()
         {
             DropForeignKey("dbo.Operations", "StudentId", "dbo.Students");
-            DropForeignKey("dbo.Operations", "Returner_StaffId", "dbo.Staffs");
-            DropForeignKey("dbo.Operations", "Recipient_StaffId", "dbo.Staffs");
-            DropForeignKey("dbo.Operations", "Staff_StaffId1", "dbo.Staffs");
-            DropForeignKey("dbo.Operations", "Staff_StaffId", "dbo.Staffs");
+            DropForeignKey("dbo.Operations", "StaffId", "dbo.Staffs");
             DropForeignKey("dbo.Operations", "BookId", "dbo.Books");
             DropForeignKey("dbo.Books", "GenreId", "dbo.Genres");
             DropForeignKey("dbo.Books", "AuthorId", "dbo.Authors");
-            DropIndex("dbo.Operations", new[] { "Returner_StaffId" });
-            DropIndex("dbo.Operations", new[] { "Recipient_StaffId" });
-            DropIndex("dbo.Operations", new[] { "Staff_StaffId1" });
-            DropIndex("dbo.Operations", new[] { "Staff_StaffId" });
+            DropIndex("dbo.Operations", new[] { "StaffId" });
             DropIndex("dbo.Operations", new[] { "StudentId" });
             DropIndex("dbo.Operations", new[] { "BookId" });
             DropIndex("dbo.Books", new[] { "GenreId" });

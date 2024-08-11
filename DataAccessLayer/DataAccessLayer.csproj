@@ -51,26 +51,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstarct\IAuthorDal.cs" />
+    <Compile Include="Abstarct\IBookDal.cs" />
+    <Compile Include="Abstarct\IOperationDal.cs" />
     <Compile Include="Abstarct\IRepository.cs" />
     <Compile Include="Abstarct\IGenreDal.cs" />
+    <Compile Include="Abstarct\IStaffDal.cs" />
+    <Compile Include="Abstarct\IStudentDal.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
-    <Compile Include="EntityFramework\EfislemDal.cs" />
-    <Compile Include="EntityFramework\EfkitapDal.cs" />
-    <Compile Include="EntityFramework\EfogrenciDal.cs" />
+    <Compile Include="EntityFramework\EfAuthorDal.cs" />
+    <Compile Include="EntityFramework\EfBookDal.cs" />
     <Compile Include="EntityFramework\EfGenreDal.cs" />
-    <Compile Include="EntityFramework\EfyazarDal.cs" />
-    <Compile Include="Migrations\202404242112135_mig1.cs" />
-    <Compile Include="Migrations\202404242112135_mig1.designer.cs">
-      <DependentUpon>202404242112135_mig1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404242127186_mig2.cs" />
-    <Compile Include="Migrations\202404242127186_mig2.designer.cs">
-      <DependentUpon>202404242127186_mig2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202404242130514_mig3.cs" />
-    <Compile Include="Migrations\202404242130514_mig3.designer.cs">
-      <DependentUpon>202404242130514_mig3.cs</DependentUpon>
+    <Compile Include="EntityFramework\EfOperationDal.cs" />
+    <Compile Include="EntityFramework\EfStaffDal.cs" />
+    <Compile Include="EntityFramework\EfStudentDal.cs" />
+    <Compile Include="Migrations\202408091747013_InitialCreate.cs" />
+    <Compile Include="Migrations\202408091747013_InitialCreate.designer.cs">
+      <DependentUpon>202408091747013_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,14 +84,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202404242112135_mig1.resx">
-      <DependentUpon>202404242112135_mig1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404242127186_mig2.resx">
-      <DependentUpon>202404242127186_mig2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202404242130514_mig3.resx">
-      <DependentUpon>202404242130514_mig3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202408091747013_InitialCreate.resx">
+      <DependentUpon>202408091747013_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

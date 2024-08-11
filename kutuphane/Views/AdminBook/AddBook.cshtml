@@ -1,6 +1,6 @@
-﻿﻿@model EntityLayer.Concrete.Genre
+﻿@model EntityLayer.Concrete.Book
 @{
-    ViewBag.Title = "Updatetur";
+    ViewBag.Title = "AddBook";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -12,12 +12,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tür Ekle</h1>
+                    <h1>Kitap Ekle</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/AdminTur/Index">Home</a></li>
-                        <li class="breadcrumb-item active">Tür Güncelle</li>
+                        <li class="breadcrumb-item"><a href="/AdminBook/Index">Home</a></li>
+                        <li class="breadcrumb-item active">Kitap Ekle</li>
                     </ol>
                 </div>
             </div>
@@ -29,23 +29,31 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Kütüphane Otomasyonu Tür Ekleme Sayfası</h3>
+                            <h3 class="card-title">Kütüphane Otomasyonu Kitap Ekleme Sayfası</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        @using (Html.BeginForm("Updatetur", "AdminTur", FormMethod.Post))
+                        @using (Html.BeginForm("AddBook", "AdminBook", FormMethod.Post))
                         {
                             <div class="card-body">
                                 <form role="form">
-                                    <div class="form-group">
-                                        @Html.Label("Tür Id")
-                                        @Html.TextBoxFor(x => x.GenreId, new { @class = "form-control", @readonly = "readonly" })
-                                        @Html.Label("Türün Adı")
+                                    <div class="card-footer">
+                                        @Html.Label("Kitap Adı")
                                         @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(x => x.Name)                                        
-                                        @Html.Label("Türün Açıklaması")
-                                        @Html.TextBoxFor(x => x.Info, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(x => x.Info)
+                                        @Html.ValidationMessageFor(x => x.Name)
+
+                                        @Html.Label("Sayfa Sayısı")
+                                        @Html.TextBoxFor(x => x.Pages, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Pages)
+
+                                        @Html.Label("Tür Adı")
+                                        @Html.DropDownListFor(x => x.GenreId, (List<SelectListItem>)ViewBag.GenreValues,
+                                      new { @class = "form-control" })
+
+
+                                        @Html.Label("Yazar Adı")
+                                        @Html.DropDownListFor(x => x.AuthorId, (List<SelectListItem>)ViewBag.AuthorValues,
+                                      new { @class = "form-control" })
                                     </div>
                                     <!-- /.card-body -->
                                     <div class="card-footer">
@@ -61,5 +69,6 @@
         </div>
     </section>
 </div>
+
 
 

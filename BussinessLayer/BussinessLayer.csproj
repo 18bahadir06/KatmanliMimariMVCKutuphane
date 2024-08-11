@@ -60,10 +60,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAuthorService.cs" />
+    <Compile Include="Abstract\IBookService.cs" />
     <Compile Include="Abstract\IGenreService.cs" />
+    <Compile Include="Abstract\IOperationService.cs" />
+    <Compile Include="Abstract\IStaffLoginService.cs" />
+    <Compile Include="Abstract\IStudentService.cs" />
+    <Compile Include="Concrete\AuthorManager.cs" />
+    <Compile Include="Concrete\BookManager.cs" />
     <Compile Include="Concrete\GenreManager.cs" />
+    <Compile Include="Concrete\OperationManager.cs" />
+    <Compile Include="Concrete\StaffLoginManager.cs" />
+    <Compile Include="Concrete\StudentManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationRules\AuthorValidator.cs" />
+    <Compile Include="ValidationRules\BookValidator.cs" />
     <Compile Include="ValidationRules\GenreValidator.cs" />
+    <Compile Include="ValidationRules\StudentValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">

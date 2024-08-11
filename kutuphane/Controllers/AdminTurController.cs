@@ -17,9 +17,18 @@ namespace kutuphane.Controllers
     {
         // GET: AdminTur
         GenreManager tm = new GenreManager(new EfGenreDal());
+        BookManager bm= new BookManager(new EfBookDal());
         public ActionResult Index()
         {
             var Genrevalues = tm.GetGenreList();
+            List<SelectListItem> list = new List<SelectListItem>();
+            foreach (var item in Genrevalues)
+            {
+                var a=bm.GetGenreBookList(item.GenreId);
+                int b=a.Count;
+                list.Add(new SelectListItem { Value = item.GenreId.ToString(), Text = b.ToString()});
+            }
+            ViewBag.number = list.ToList();
             return View(Genrevalues);
         }
         [HttpGet]
@@ -27,6 +36,7 @@ namespace kutuphane.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult AddTur(Genre p)
         {
@@ -64,6 +74,13 @@ namespace kutuphane.Controllers
         {
             tm.GenreUpdate(p);
             return RedirectToAction("Index");
+        } 
+        public ActionResult GenreBook(int id)
+        {
+            var p=bm.GetGenreBookList(id);
+            var genre = tm.GetByID(id);
+            ViewData["GenreAd"] = genre.Name;
+            return View(p);
         }
-    }
-}
+    }       
+}           

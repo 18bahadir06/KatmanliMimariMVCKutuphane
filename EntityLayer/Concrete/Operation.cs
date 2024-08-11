@@ -12,15 +12,15 @@ namespace EntityLayer.Concrete
         [Key]
         public int OperationId { get; set; }
         public DateTime BorrowDate { get; set; } //alış tarihi
-        public DateTime ReturnDate { get; set; } //veriş tarihi
+        public DateTime ReturnDate1 { get; set; } //alış tarihi
+        public DateTime ReturnDate2 { get; set; } //veriş tarihi
         public int BookId { get; set; }
         public virtual Book Books { get; set; }
+        
         public int StudentId { get; set; }
         public virtual Student Students { get; set; }
-
-        public int RecipientId { get; set; }
-        public virtual Staff Recipient { get; set; }
-        public int ReturnerId { get; set; }
-        public virtual Staff Returner { get; set; }
+        public int StaffId { get; set; }
+        public virtual Staff Staffs { get; set; }
+        public bool DeliveryStatus { get; set; }
     }
 }
