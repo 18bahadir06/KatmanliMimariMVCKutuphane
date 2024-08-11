@@ -51,10 +51,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @{ foreach (var i in Model)
+                                        @{
+                                            foreach (var i in Model)
                                             {
-                                            if (i.DeliveryStatus == false)
+                                                if (i.DeliveryStatus == false)
+
                                                 {
+
                                                   <tr>
                                                       <td><a href="#">@i.OperationId</a></td>
                                                       <td>@i.Staffs.Name</td>
@@ -66,9 +69,12 @@
                                                       <td>
                                                           <div class="sparkbar" data-color="#00a65a" data-height="20">@i.ReturnDate1.ToString("yyyy-MM-dd")</div>
                                                       </td>
-                                                      @if(i.ReturnDate1 > DateTime.Now){<td><span class="badge badge-success">Zamanı gelmedi</span></td>}else{<td>
+                                                      @if (i.ReturnDate1 > DateTime.Now)
+                                                      {<td><span class="badge badge-success">Zamanı gelmedi</span></td>}
+                                                      else
+                                                      {<td>
                                                                                                                                                                   <span class="badge badge-danger">Zamanı geçti</span></td>}
-                                                  
+
                                                       @if (i.ReturnDate1 < DateTime.Now)
                                                       {
                                                           TimeSpan zaman = DateTime.Now - i.ReturnDate1;
@@ -84,8 +90,8 @@
                                                           </td>
                                                       }                   
                                                   </tr>
-                                                }        
-                                            } 
+                                                }
+                                            }
                                             }
                                     </tbody>
                                 </table>
@@ -93,9 +99,7 @@
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer clearfix">
-                            <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Hepsini gör</a>
-                        </div>
+
                         <!-- /.card-footer -->
                     </div>
                 </div>
@@ -129,10 +133,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var i in Model)
-                                        {
-                                            if (i.DeliveryStatus == false && i.ReturnDate1 < DateTime.Now)
+                                        @{
+                                            
+                                            foreach (var i in Model)
                                             {
+
+                                                if (i.DeliveryStatus == false && i.ReturnDate1 < DateTime.Now)
+                                                {
+             
                                                 <tr>
                                                     <td><a href="pages/examples/invoice.html">@i.OperationId</a></td>
                                                     <td>@i.Staffs.Name</td>
@@ -150,17 +158,15 @@
                                                         <div class="sparkbar" data-color="#00a65a" data-height="20">@daysPassed</div>
                                                     </td>}
                                                 </tr>
-                                            }
-                                        }
+                                                            }
+                                                        } }
                                     </tbody>
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer clearfix">
-                            <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Hepsini gör</a>
-                        </div>
+
                         <!-- /.card-footer -->
                     </div>
                 </div>
@@ -193,34 +199,34 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var i in Model)
-                                        {
-                                            if (i.DeliveryStatus != false)
+                                        @{
+                                            foreach (var i in Model)
                                             {
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">@i.OperationId</a></td>
-                                                    <td>@i.Staffs.Name</td>
-                                                    <td>@i.Students.Name</td>
-                                                    <td><span class="badge badge-info">@i.Books.Name</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#00a65a" data-height="20">@i.BorrowDate.ToString("yyyy-MM-dd")</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#00a65a" data-height="20">@i.ReturnDate2.ToString("yyyy-MM-dd")</div>
-                                                    </td>
 
-                                                </tr>
+                                                if (i.DeliveryStatus != false){
+                                                            <tr>
+                                                                <td><a href="pages/examples/invoice.html">@i.OperationId</a></td>
+                                                                <td>@i.Staffs.Name</td>
+                                                                <td>@i.Students.Name</td>
+                                                                <td><span class="badge badge-info">@i.Books.Name</span></td>
+                                                                <td>
+                                                                    <div class="sparkbar" data-color="#00a65a" data-height="20">@i.BorrowDate.ToString("yyyy-MM-dd")</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="sparkbar" data-color="#00a65a" data-height="20">@i.ReturnDate2.ToString("yyyy-MM-dd")</div>
+                                                                </td>
+
+                                                            </tr>
+                                                        }
+                                                    }
                                             }
-                                        }
                                     </tbody>
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer clearfix">
-                            <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Hepsini gör</a>
-                        </div>
+
                         <!-- /.card-footer -->
                     </div>
                 </div>

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace kutuphane.Controllers
 {
@@ -13,11 +15,12 @@ namespace kutuphane.Controllers
     {
         StudentManager sm = new StudentManager(new EfStudentDal());
         BookManager bm = new BookManager(new EfBookDal());
-        OperationManager om = new OperationManager(new EfOperationDal()); 
+        OperationManager om = new OperationManager(new EfOperationDal());
+        
         public ActionResult Index()
         {
-            var p = om.GetOperationlist();
-            return View(p);
+            var deger = om.GetOperationlist();
+            return View(deger);
         }
 
         public ActionResult AddOperation()

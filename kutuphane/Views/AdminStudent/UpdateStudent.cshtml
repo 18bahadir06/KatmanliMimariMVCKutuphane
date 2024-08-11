@@ -1,0 +1,77 @@
+﻿@model EntityLayer.Concrete.Student
+@{
+    ViewBag.Title = "UpdateStudent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Öğrenci Güncelle</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/AdminAuthor/Index">Home</a></li>
+                        <li class="breadcrumb-item active">Yazar Güncelle</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Kütüphane Otomasyonu Öğrenci güncelleme Sayfası</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        @using (Html.BeginForm("UpdateStudent", "AdminStudent", FormMethod.Post))
+                        {
+                            <div class="card-body">
+                                <form role="form">
+                                    <div class="form-group">
+                                        @Html.Label("Öğrenci Id")
+                                        @Html.TextBoxFor(x => x.StudentId, new { @class = "form-control", @readonly = "readonly" })
+
+                                        @Html.Label("Öğrenci Adı")
+                                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Name)
+
+                                        @Html.Label("Öğrenci Soyadı")
+                                        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Surname)
+
+                                        @Html.Label("Doğum Tarihi")
+                                        @Html.TextBoxFor(x => x.DateBirth, new { @class = "form-control", type = "date", value = Model.DateBirth.ToString("yyyy-MM-dd"), min = "1940-01-01", max = "2006-12-31" })
+                                        @Html.ValidationMessageFor(x => x.DateBirth)
+                                        @Html.Label("Mail adresi")
+                                        @Html.TextBoxFor(x => x.Gmail, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Gmail)
+                                        <br />
+                                        @Html.Label("Cinsiyet")
+                                        @Html.DropDownListFor(x => x.Gender, (List<SelectListItem>)ViewBag.Cinsiyet, new { @class = "form-control" })
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                                    </div>
+                                </form>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

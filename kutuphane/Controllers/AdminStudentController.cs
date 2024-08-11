@@ -47,6 +47,32 @@ namespace kutuphane.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public ActionResult UpdateStudent(int id)
+        {
+            SetGenderViewbag();
+            var StudentValue = sm.GetById(id);
+            return View(StudentValue);
+        }
+        [HttpPost]
+        public ActionResult UpdateStudent(Student p)
+        {
+            StudentValidator StudentValidator = new StudentValidator();
+            ValidationResult results = StudentValidator.Validate(p);
+            if (results.IsValid)
+            {
+                sm.StudentUpdate(p);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+        }
         private void SetGenderViewbag()
         {
             List<SelectListItem> cinsiyet = new List<SelectListItem>()

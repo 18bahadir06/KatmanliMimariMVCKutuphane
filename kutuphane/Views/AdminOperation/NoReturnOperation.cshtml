@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "NoReturnOperation";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Bütün işlemlerim</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Home</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Responsive Hover Table</h3>
+
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>İşlem ID</th>
+                                            <th>Öğrenci</th>
+                                            <th>Kitap</th>
+                                            <th>Teslim verilen tarih</th>
+                                            <th>Teslim alınan tarih</th>
+                                            <th>Teslim durumu</th>
+                                            <th>Teslim et</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{ foreach (var i in Model)
+                                            {
+                                                <tr>
+                                                    <td><a href="#">@i.OperationId</a></td>
+                                                    <td>@i.Students.Name</td>
+                                                    <td><span class="badge badge-info">@i.Books.Name</span></td>
+                                                    <td>
+                                                        <div class="sparkbar" data-color="#00a65a" data-height="20">@i.BorrowDate.ToString("yyyy-MM-dd")</div>
+                                                    </td>
+
+
+                                                    @if (i.DeliveryStatus)
+                                                    {
+                                                        <td>
+                                                            <div class="sparkbar" data-color="#00a65a" data-height="20">@i.ReturnDate2.ToString("yyyy-MM-dd")</div>
+                                                        </td>
+                                                        <td>
+                                                            <span class="badge badge-success">Teslim edildi</span>
+                                                        </td>
+                                                        <td>-</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>-</td>
+                                                        <td><span class="badge badge-danger">Teslim edilmedi</span></td>
+                                                        <td>
+                                                            <button class="btn btn-dark" data-toggle="modal" data-target="#Modal1">
+                                                                Teslim et
+                                                            </button>
+                                                            <div class="modal" id="Modal1">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h2 class="modal-title">
+                                                                                Sayın @Session["Staffadsoyad"];
+                                                                            </h2>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <h4>Kitap teslim işlemi bilgiler:</h4><br />
+                                                                            <label>Öğrenci = @i.Students.Name @i.Students.Surname</label><br />
+                                                                            <label>Kitap = @i.Books.Name</label><br />
+                                                                            <label>Teslim tarihi = @DateTime.Now.ToString("yyyy-MM-dd")</label><br />
+                                                                            <a href="/AdminOperation/DeliveryStatus/@i.OperationId" class="btn btn-info">Teslim Et</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    }
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

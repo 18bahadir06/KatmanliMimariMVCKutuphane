@@ -1,7 +1,10 @@
-﻿
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<EntityLayer.Concrete.Author>
+
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <br />
@@ -85,13 +88,12 @@
 
                         <!-- /.card-body -->
                         <div class="card-footer clearfix">
-                            <ul class="pagination pagination-sm m-0 float-right">
-                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                            </ul>
+                                @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }),new PagedListRenderOptions
+                           {
+                               LiElementClasses=new List<string>
+                               {"page-link"}
+                           })
+
                         </div>
                     </div>
                 </div>

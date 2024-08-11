@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace kutuphane.Controllers
 {
@@ -15,10 +17,9 @@ namespace kutuphane.Controllers
     {
         AuthorManager am=new AuthorManager(new EfAuthorDal());
         BookManager bm=new BookManager(new EfBookDal());
-        [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int p=1)
         {
-            var AuthorValues=am.GetAuthorList();
+            var AuthorValues=am.GetAuthorList().ToPagedList(p,10);
             return View(AuthorValues);
         }
         [HttpGet]

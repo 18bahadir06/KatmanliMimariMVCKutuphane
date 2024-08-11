@@ -10,6 +10,7 @@ using System.Web.Security;
 
 namespace kutuphane.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         StaffLoginManager slm = new StaffLoginManager(new EfStaffDal());
@@ -35,6 +36,12 @@ namespace kutuphane.Controllers
                 Session["hata"] = "şifre veya kullanıcı adı hatalı";
             }
             return View();
+        }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index");
         }
     }
 }

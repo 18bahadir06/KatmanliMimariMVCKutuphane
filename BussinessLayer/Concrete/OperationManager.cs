@@ -25,9 +25,24 @@ namespace BussinessLayer.Concrete
             return _OperationDal.Get(x => x.OperationId == id);
         }
 
+        public List<Operation> GetDelayList()
+        {
+            return _OperationDal.ListFiltr(x => x.DeliveryStatus == false && x.ReturnDate1 < DateTime.Now) ;
+        }
+
+        public List<Operation> GetNoReturnList()
+        {
+            return _OperationDal.ListFiltr(x=>x.DeliveryStatus==false);
+        }
+
         public List<Operation> GetOperationlist()
         {
             return _OperationDal.List();
+        }
+
+        public List<Operation> GetReturnList()
+        {
+            return _OperationDal.ListFiltr(x=>x.DeliveryStatus==true);
         }
 
         public List<Operation> GetStaffList(int id)

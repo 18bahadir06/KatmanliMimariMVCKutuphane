@@ -9,6 +9,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
+
 
 namespace kutuphane.Controllers
 {
@@ -17,9 +20,9 @@ namespace kutuphane.Controllers
         BookManager bm = new BookManager(new EfBookDal());
         GenreManager gm = new GenreManager(new EfGenreDal());
         AuthorManager am = new AuthorManager(new EfAuthorDal());
-        public ActionResult Index()
+        public ActionResult Index(int p=1)
         {
-            var BookValues=bm.GetBookList();
+            var BookValues=bm.GetBookList().ToPagedList(p,10);
             return View(BookValues);
         }
         [HttpGet]
@@ -105,12 +108,12 @@ namespace kutuphane.Controllers
             }
             return View();
         }
-        public ActionResult AuthorBook(int id)
+        public ActionResult AuthorBook(int id,int p=1)
         {
             var author= am.GetById(id);
-            var p=bm.GetAuthorBookList(id);
+            var deger=bm.GetAuthorBookList(id).ToPagedList(p,10);
             ViewData["Author"] = author.Name + " " + author.Surname; 
-            return View(p);
+            return View(deger);
         }
     }
 }
