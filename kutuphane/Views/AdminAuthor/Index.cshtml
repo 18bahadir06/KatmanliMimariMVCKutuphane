@@ -59,13 +59,13 @@ Layout = "~/Views/Shared/_AdminLayout.cshtml";
                                     </div>
                                 </div>
                             </div>
-                            <a href="/AdminAuthor/AddAuthor" class="btn btn-info" style="float:right;">+ Yeni Yazar ekle</a>
+                            
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
                                         <th>Yazar Adı Soyadı</th>
-                                        <th>Foto</th>
+                            
                                         <th>Güncelle</th>
                                         <th>Sil</th>
                                     </tr>
@@ -76,7 +76,7 @@ Layout = "~/Views/Shared/_AdminLayout.cshtml";
                                         <tr>
                                             <th>@i.AuthorId</th>
                                             <td><a href="/AdminBook/AuthorBook/@i.AuthorId">@i.Name @i.Surname</a></td>
-                                            <td><p>@i.Photo</p></td>
+                                            
                                             <td><a href="/AdminAuthor/UpdateAuthor/@i.AuthorId" class="btn btn-warning">Güncelle</a></td>
                                             <td><a href="/AdminAuthor/DeleteAuthor/@i.AuthorId" class="btn btn-danger">Sil</a></td>
                                         </tr>

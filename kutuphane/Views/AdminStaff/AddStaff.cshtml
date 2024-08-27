@@ -1,0 +1,77 @@
+﻿@model EntityLayer.Concrete.Staff
+@{
+    ViewBag.Title = "AddStaff";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Personel Ekleme sayfası</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Home</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Kütüphane Otomasyonu Personel Ekleme Sayfası</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        @using (Html.BeginForm("AddStaff", "AdminStaff", FormMethod.Post))
+                        {
+                            <div class="card-body">
+                                <form role="form">
+                                    <div class="card-footer">
+                                        @Html.Label("Adı")
+                                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Name)
+                                        <br />
+                                        @Html.Label("Soyadı")
+                                        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Surname)
+                                        <br />
+                                        @Html.Label("Email")
+                                        @Html.TextBoxFor(x => x.Gmail, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Gmail)
+                                        <br />
+                                        @Html.Label("Kullanıcı şifre")
+                                        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Password)
+                                        <br />
+                                        <div class="custom-checkbox" style="margin-left:10px;">
+                                            @Html.CheckBoxFor(x => x.Admin, new { @class = "custom-control-input", id = "isActiveCheckbox" })
+                                            @Html.Label("IsActive", "Admin izni?", new { @class = "custom-control-label", @for = "isActiveCheckbox" })
+                                        </div>
+
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                                    </div>
+                                </form>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

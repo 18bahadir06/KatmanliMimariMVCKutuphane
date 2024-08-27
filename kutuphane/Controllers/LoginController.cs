@@ -29,7 +29,9 @@ namespace kutuphane.Controllers
                 Session["StaffId"] = StaffUserInfo.StaffId;
                 Session["StaffMail"]=StaffUserInfo.Gmail;
                 Session["Staffadsoyad"]=StaffUserInfo.Name +" "+ StaffUserInfo.Surname;
-                return RedirectToAction("Index","AdminAuthor");
+                bool control = StaffUserInfo.Admin;
+                Session["Admin"]=control;
+                return RedirectToAction("Index","AdminOperation");
             }
             else
             {

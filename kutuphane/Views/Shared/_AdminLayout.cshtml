@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="~/plugins/summernote/summernote-bs4.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+    
     <link href="https://fonts."
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -37,17 +37,6 @@
             </ul>
 
             <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -83,7 +72,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview">
                             <!--Menu open-->
                             <a href="/AdminOperation" class="nav-link">
@@ -222,29 +211,45 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Personel
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/AdminStaff/AddStaff" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Personel Ekle</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/AdminStaff/Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Personel Listesi</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+
+                        @{ try
+                            {
+
+                                if ((bool)Session["Admin"] == true)
+                                {
+                                    <li class="nav-item has-treeview">
+                                        <a href="#" class="nav-link">
+                                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                                            <p>
+                                                Personel
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href="/AdminStaff/AddStaff" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Personel Ekle</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/AdminStaff/Index" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Personel Listesi</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+                        }
+
+
+
                         <li class="nav-item has-treeview">
                             <a href="/login/LogOut" class="nav-link">
                                 <i class="left fas fa-angle-left"></i>
@@ -273,6 +278,7 @@
     </div>
     <!-- ./wrapper -->
     <!-- jQuery -->
+    <script src="~/dist/js/Active.js"></script>
     <script src="~/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="~/plugins/jquery-ui/jquery-ui.min.js"></script>
