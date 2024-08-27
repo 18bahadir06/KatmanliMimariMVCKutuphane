@@ -28,7 +28,7 @@ Bu proje aşağıdaki teknolojileri ve araçları kullanır:
 - **Fluent Validation:** Model doğrulamaları için kullanılır.
 
 ## Katkıda Bulunanlar
-Bu proje [Bahadır](https://github.com/18bahadir06) tarafından geliştirilmiştir .
+Bu proje [Bahadır Akkaşoğlu](https://github.com/18bahadir06) tarafından geliştirilmiştir .
 
 ## Bana Ulaşın
 
